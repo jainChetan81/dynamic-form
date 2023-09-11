@@ -11,7 +11,7 @@
  *
  */
 
-import { Z_Form } from "@/@types";
+import type { Z_Form } from "@/@types";
 
 export const validateForm = (form: Prettify<Z_Form>): string[] => {
 	const errors: string[] = [];

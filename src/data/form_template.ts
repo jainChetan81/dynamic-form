@@ -1,4 +1,4 @@
-import { Z_Form } from "@/@types";
+import { type Z_Form } from "@/@types";
 import { generateUUID } from "@/server/utils";
 
 const formId = generateUUID();
@@ -19,8 +19,8 @@ const formTemplate: Prettify<Z_Form> = {
 		{
 			formId: formId,
 			formSectionID: sectionId,
-			sectionTitle: "",
-			sectionDesc: "",
+			sectionTitle: "Section 1",
+			sectionDesc: "Description 1",
 			formQuestions: [
 				{
 					formSectionID: sectionId,

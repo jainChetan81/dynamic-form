@@ -1,18 +1,25 @@
 "use client"
 import { useStore } from "@/context/RefContext"
+import { ServerFormSection, ServerFormQuestion } from "./server"
 
 export const ClientFormBuilder = () => {
     const [totalSections] = useStore((store) => (store?.formSections?.length ?? 0))
+    const [header] = useStore((store) => store?.formTitle ?? "")
     return (
-        <div>
+        <>
+            <h1 className="text-center">{header}</h1>
             {Array.from({ length: totalSections }).map((_, idx) => (
                 <ClientFormSectionHeader key={idx} sectionIdx={idx} />
             ))}
-        </div>)
+        </>)
 }
 
 const ClientFormSectionHeader = ({ sectionIdx }: { sectionIdx: number; }) => {
     const [currentSection] = useStore((store) => store?.formSections[sectionIdx])
     if (!currentSection) return <></>
-    return <div>{currentSection.sectionTitle}</div>
+    return <ServerFormSection section={currentSection}>
+        {currentSection.formQuestions.map((question) => (
+            <ServerFormQuestion key={question.questionID} question={question} />
+        ))}
+    </ServerFormSection>
 }
